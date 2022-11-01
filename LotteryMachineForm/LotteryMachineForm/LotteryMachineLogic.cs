@@ -1,20 +1,25 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
-namespace LotteryMachine
+namespace LotteryMachineForm
 {
     /// <summary>
     /// 樂透機邏輯
     /// </summary>
-    public class LotteryMachineLogic
+    internal class LotteryMachineLogic
     {
         private List<int> _lotteryBallList;
 
-        public LotteryMachineLogic(int maxAmountOfBalls)
+        public LotteryMachineLogic()
         {
-            // 產生樂透球
-            _lotteryBallList = Enumerable.Range(1, maxAmountOfBalls).ToList();
+            _lotteryBallList = new List<int>();
+        }
+
+        public List<int> GetLotteryBallNumber()
+        {
+            return _lotteryBallList;
         }
 
         /// <summary>
@@ -61,6 +66,12 @@ namespace LotteryMachine
         public void Shuffle()
         {
             _lotteryBallList = GetAllNumber();
+        }
+
+        public void GenerateLotteryBallNumber(int maxAmountOfBalls)
+        {
+            // 產生樂透球
+            _lotteryBallList = Enumerable.Range(1, maxAmountOfBalls).ToList();
         }
     }
 }
