@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,53 +6,84 @@ namespace LotteryMachineForm
 {
     public partial class Form1 : Form
     {
-        private readonly LotteryMachineLogic _lottery;
+        private LotteryMachine _lottery;
 
         public Form1()
         {
             InitializeComponent();
-            _lottery = new LotteryMachineLogic();
+            ResetLotteryMachine();
         }
 
-        private void ShowOriginalLotteryBallList()
-        {
-            this.txtOriginalLotteryBallList.Text = "";
-            foreach (var number in _lottery.GetLotteryBallNumber())
-            {
-                this.txtOriginalLotteryBallList.Text += $"{number}\r\n";
-            }
-        }
-
-
+        /// <summary>
+        /// 洗球
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnShuffle_Click(object sender, EventArgs e)
         {
             _lottery.Shuffle();
             ShowOriginalLotteryBallList();
         }
 
+        /// <summary>
+        /// 抽一球
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnGetOneNumber_Click(object sender, EventArgs e)
         {
-            var number = _lottery.GetOneNumber();
-            txtResult.Text += $"{number}\r\n";
+            var ballNumber = _lottery.GetOneNumber();
+            txtResult.Text += $"{ballNumber}\r\n";
             ShowOriginalLotteryBallList();
         }
 
-        private void btnGetAllNumber_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 自動抽球
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void btnAutoGetBallNumber_Click(object sender, EventArgs e)
         {
-            var numbers = _lottery.GetAllNumber();
-            foreach (var number in numbers)
+            while (_lottery.GetBallList().Count != 0)
             {
-                txtResult.Text += $"{number}\r\n";
+                await Task.Delay(100);
+                var ballNumber = _lottery.GetOneNumber();
+                txtResult.Text += $"{ballNumber}\r\n";
                 ShowOriginalLotteryBallList();
             }
         }
 
+        /// <summary>
+        /// 重置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReset_Click(object sender, EventArgs e)
         {
+            ResetLotteryMachine();
+        }
+
+        /// <summary>
+        /// 顯示樂透機裡面樂透球
+        /// </summary>
+        private void ShowOriginalLotteryBallList()
+        {
+            txtOriginalLotteryBallList.Text = "";
+            foreach (var ballNumber in _lottery.GetBallList())
+            {
+                txtOriginalLotteryBallList.Text += $"{ballNumber}\r\n";
+            }
+        }
+
+        /// <summary>
+        /// 重置樂透機
+        /// </summary>
+        private void ResetLotteryMachine()
+        {
             var ballQty = Convert.ToInt32(this.txtMaxBallQty.Text);
-            _lottery.GenerateLotteryBallNumber(ballQty);
+            _lottery = new LotteryMachine(ballQty);
             ShowOriginalLotteryBallList();
-            this.txtResult.Text = "";
+            txtResult.Text = "";
         }
     }
 }

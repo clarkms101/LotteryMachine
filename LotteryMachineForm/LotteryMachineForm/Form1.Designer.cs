@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtMaxBallQty = new System.Windows.Forms.TextBox();
             this.btnReset = new System.Windows.Forms.Button();
-            this.btnGetAllNumber = new System.Windows.Forms.Button();
+            this.btnAutoGetBallNumber = new System.Windows.Forms.Button();
             this.btnGetOneNumber = new System.Windows.Forms.Button();
             this.btnShuffle = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.txtOriginalLotteryBallList = new System.Windows.Forms.TextBox();
             this.txtResult = new System.Windows.Forms.TextBox();
-            this.txtMaxBallQty = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -61,7 +61,7 @@
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.txtMaxBallQty);
             this.splitContainer1.Panel1.Controls.Add(this.btnReset);
-            this.splitContainer1.Panel1.Controls.Add(this.btnGetAllNumber);
+            this.splitContainer1.Panel1.Controls.Add(this.btnAutoGetBallNumber);
             this.splitContainer1.Panel1.Controls.Add(this.btnGetOneNumber);
             this.splitContainer1.Panel1.Controls.Add(this.btnShuffle);
             // 
@@ -72,25 +72,42 @@
             this.splitContainer1.SplitterDistance = 106;
             this.splitContainer1.TabIndex = 0;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(25, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 19);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "輸入球數量";
+            // 
+            // txtMaxBallQty
+            // 
+            this.txtMaxBallQty.Location = new System.Drawing.Point(24, 50);
+            this.txtMaxBallQty.Name = "txtMaxBallQty";
+            this.txtMaxBallQty.Size = new System.Drawing.Size(97, 27);
+            this.txtMaxBallQty.TabIndex = 4;
+            this.txtMaxBallQty.Text = "100";
+            // 
             // btnReset
             // 
             this.btnReset.Location = new System.Drawing.Point(155, 43);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(94, 39);
             this.btnReset.TabIndex = 3;
-            this.btnReset.Text = "放球";
+            this.btnReset.Text = "重置";
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
-            // btnGetAllNumber
+            // btnAutoGetBallNumber
             // 
-            this.btnGetAllNumber.Location = new System.Drawing.Point(539, 43);
-            this.btnGetAllNumber.Name = "btnGetAllNumber";
-            this.btnGetAllNumber.Size = new System.Drawing.Size(94, 39);
-            this.btnGetAllNumber.TabIndex = 2;
-            this.btnGetAllNumber.Text = "抽全部";
-            this.btnGetAllNumber.UseVisualStyleBackColor = true;
-            this.btnGetAllNumber.Click += new System.EventHandler(this.btnGetAllNumber_Click);
+            this.btnAutoGetBallNumber.Location = new System.Drawing.Point(539, 43);
+            this.btnAutoGetBallNumber.Name = "btnAutoGetBallNumber";
+            this.btnAutoGetBallNumber.Size = new System.Drawing.Size(94, 39);
+            this.btnAutoGetBallNumber.TabIndex = 2;
+            this.btnAutoGetBallNumber.Text = "自動抽球";
+            this.btnAutoGetBallNumber.UseVisualStyleBackColor = true;
+            this.btnAutoGetBallNumber.Click += new System.EventHandler(this.btnAutoGetBallNumber_Click);
             // 
             // btnGetOneNumber
             // 
@@ -150,23 +167,6 @@
             this.txtResult.Size = new System.Drawing.Size(371, 336);
             this.txtResult.TabIndex = 0;
             // 
-            // txtMaxBallQty
-            // 
-            this.txtMaxBallQty.Location = new System.Drawing.Point(24, 50);
-            this.txtMaxBallQty.Name = "txtMaxBallQty";
-            this.txtMaxBallQty.Size = new System.Drawing.Size(97, 27);
-            this.txtMaxBallQty.TabIndex = 4;
-            this.txtMaxBallQty.Text = "100";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 19);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "輸入球數量";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -198,7 +198,7 @@
         private System.Windows.Forms.TextBox txtOriginalLotteryBallList;
         private System.Windows.Forms.TextBox txtResult;
         private System.Windows.Forms.Button btnGetOneNumber;
-        private System.Windows.Forms.Button btnGetAllNumber;
+        private System.Windows.Forms.Button btnAutoGetBallNumber;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.TextBox txtMaxBallQty;
         private System.Windows.Forms.Label label1;
